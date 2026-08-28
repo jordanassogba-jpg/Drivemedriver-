@@ -1,0 +1,10 @@
+# Secrets : jamais versionnés
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Sorties locales
+tmp/
+*.log
