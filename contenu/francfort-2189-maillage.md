@@ -1,8 +1,14 @@
 # Maillage interne, page Transfert VTC Aéroport de Francfort
 
 Page cible : https://vtc-strasbourg-dmd.fr/transfert-vtc-aeroport-francfort-strasbourg/ (ID 2189, Elementor)
-Contenu à intégrer : `contenu/francfort-2189.html`
-URL vérifiées en HTTP 200 le 28/08/2026.
+Statut : publié en ligne le 28/08/2026.
+URL vérifiées en HTTP 200 le 28/08/2026, 24 liens internes contrôlés sur la page publiée.
+
+Le contenu a été poussé via l'API REST, dans le meta `_elementor_data`, par
+`scripts/wp-maj-francfort.py`. La FAQ a été ajoutée ensuite par
+`scripts/wp-faq-inline-francfort.py`. Sauvegarde d'origine :
+`backup/2189_AVANT_MODIFICATION.json`, restaurable avec
+`python3 scripts/wp-maj-francfort.py --restore backup/2189_AVANT_MODIFICATION.json`.
 
 ## Principe retenu
 
@@ -42,6 +48,9 @@ ancre générique, aucun lien en exact match répété.
 | 18 | page de réservation en ligne | Popup Elementor 1789 | FAQ | Conversion |
 | 19 | par mail ou par téléphone | /contactez-nous/ | FAQ | Conversion |
 
+Deux liens sortants du bloc de bas de page ont par ailleurs été corrigés : il
+pointait vers la page courante, et listait Entzheim deux fois.
+
 Le popup de réservation est celui déjà utilisé par le bouton en haut de page.
 Href à reprendre tel quel :
 
@@ -57,6 +66,23 @@ Le texte a été repris mot pour mot. Deux points seulement :
   « le Conseil de l'Europe », « les incontournables du Bas-Rhin ») pour que le
   lien porte sur un groupe nominal complet plutôt qu'un fragment.
 - Aucun chiffre, tarif, durée ni distance n'a été modifié.
+
+## Contraintes techniques rencontrées
+
+Les widgets ont été réutilisés un à un, sans en créer ni en supprimer, pour que
+le CSS déjà généré par Elementor reste valide. Structure vérifiée après
+publication : 40 éléments, 2 sections, aucun identifiant perdu.
+
+La FAQ faisait exception, aucun emplacement n'étant libre. Son widget porte donc
+un identifiant neuf, absent de `uploads/elementor/css/post-2189.css`, et une
+écriture par l'API REST ne régénère pas ce fichier. Toute sa mise en forme est
+pour cette raison portée en ligne, comme le fait déjà le bloc de liens de bas de
+page. Si la page est un jour rouverte puis enregistrée dans Elementor, le CSS
+sera régénéré et ces styles en ligne resteront sans effet de bord.
+
+Le site tourne sous LiteSpeed Cache, avec un cache page de sept jours. Toute
+modification passée par l'API reste invisible aux visiteurs tant que le cache
+n'est pas purgé.
 
 ## Liens retour à créer ensuite
 

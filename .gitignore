@@ -7,3 +7,7 @@
 tmp/
 out/
 *.log
+
+# Caches Python
+__pycache__/
+*.pyc
