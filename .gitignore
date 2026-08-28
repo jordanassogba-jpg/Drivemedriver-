@@ -1,0 +1,9 @@
+# Secrets : ne jamais committer les identifiants
+.env
+.env.*
+!.env.example
+
+# Sorties de travail
+tmp/
+out/
+*.log
